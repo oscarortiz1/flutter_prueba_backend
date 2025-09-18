@@ -21,6 +21,23 @@ export class MovimientosService {
     return this.movimientoModel.find({ user: userId }).exec();
   }
 
+  // paginated listing with total count
+  async findForUserPaged(userId: string, page = 0, limit = 20) {
+    if (!userId) return { data: [], total: 0, totalPages: 0 };
+    const skip = page * limit;
+    const [docs, total] = await Promise.all([
+      this.movimientoModel
+        .find({ user: userId })
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .exec(),
+      this.movimientoModel.countDocuments({ user: userId }).exec(),
+    ]);
+    const totalPages = Math.ceil((total || 0) / limit);
+    return { data: docs, total, totalPages };
+  }
+
   // remove movimiento by id, optionally restricting to user ownership
   async removeById(id: string, userId?: string) {
     if (userId) {

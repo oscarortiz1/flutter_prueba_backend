@@ -19,9 +19,13 @@ export class MovimientosController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll(@Req() req: any) {
+  async findAll(@Req() req: any) {
     const userId = req.user?.sub;
-    return this.movimientosService.findAllForUser(userId);
+    // support pagination: ?page=0&limit=20
+    const q = req.query;
+    const page = q?.page ? parseInt(q.page as string, 10) : 0;
+    const limit = q?.limit ? parseInt(q.limit as string, 10) : 20;
+    return this.movimientosService.findForUserPaged(userId, page, limit);
   }
 
   @UseGuards(JwtAuthGuard)
