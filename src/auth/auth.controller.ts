@@ -1,10 +1,11 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post, Req, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { LoginDto } from './dto/login.dto';
 import { RequestOtpDto } from './dto/request-otp.dto';
 import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -60,5 +61,24 @@ export class AuthController {
   async logout(@Body() body: { email: string }) {
     await this.authService.revokeRefreshToken(body.email);
     return { ok: true };
+  }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: 'Get current user from JWT' })
+  async me(@Req() req: any) {
+    try {
+      const payload = req.user;
+      if (!payload || !payload.email) return { error: 'Invalid token payload' };
+      const user = await this.usersService.findByEmail(payload.email);
+      if (!user) return { error: 'User not found' };
+      const obj = user.toObject ? user.toObject() : user;
+      delete obj.password;
+      delete obj.refreshTokenHash;
+      return obj;
+    } catch (err) {
+      console.error('me error', err);
+      return { error: 'Failed to fetch user' };
+    }
   }
 }

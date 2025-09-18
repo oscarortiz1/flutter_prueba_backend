@@ -16,4 +16,9 @@ export class MovimientosService {
   async findAll() {
     return this.movimientoModel.find().exec();
   }
+
+  async removeById(id: string) {
+    const res = await this.movimientoModel.findByIdAndDelete(id).exec();
+    return res != null;
+  }
 }

@@ -35,4 +35,15 @@ export class UsersService {
     // set or unset the refreshTokenHash on the user document
     return this.userModel.findByIdAndUpdate(userId, { refreshTokenHash: hash }, { new: true }).exec();
   }
+
+  async updateById(userId: any, data: { name?: string; email?: string; password?: string }) {
+    const update: any = {};
+    if (data.name) update.name = data.name;
+    if (data.email) update.email = data.email;
+    if (data.password) {
+      const salt = await bcrypt.genSalt(10);
+      update.password = await bcrypt.hash(data.password, salt);
+    }
+    return this.userModel.findByIdAndUpdate(userId, update, { new: true }).exec();
+  }
 }

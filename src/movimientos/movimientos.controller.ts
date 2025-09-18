@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Logger } from '@nestjs/common';
+import { Body, Controller, Get, Post, Delete, Param, Logger, NotFoundException } from '@nestjs/common';
 import { MovimientosService } from './movimientos.service';
 import { CreateMovimientoDto } from './dto/create-movimiento.dto';
 
@@ -17,5 +17,12 @@ export class MovimientosController {
   @Get()
   findAll() {
     return this.movimientosService.findAll();
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    const deleted = await this.movimientosService.removeById(id);
+    if (!deleted) throw new NotFoundException();
+    return { success: true };
   }
 }
