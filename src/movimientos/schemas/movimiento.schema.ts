@@ -18,6 +18,9 @@ export class Movimiento extends Document {
   @Prop({ required: true })
   accountTo: string;
 
+  @Prop({ type: String, ref: 'User', required: true })
+  user: string; // store user id (ObjectId as string)
+
   @Prop({ default: 'PEN' })
   currency: string;
 
