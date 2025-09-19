@@ -4,7 +4,7 @@ Este README describe cómo ejecutar el mock API usado por la app Flutter de prue
 
 # ⚠️ Importante
 
-**DEBES INGRESAR A ESTE LINK PARA QUE RENDER INICIALICE:**  
+**DEBES INGRESAR A ESTE LINK PARA QUE EL BACK END EN RENDER INICIALICE:**  
 (https://flutter-prueba-backend.onrender.com/api)
 
 # VIDEO
