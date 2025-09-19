@@ -4,6 +4,18 @@ Este README describe cómo ejecutar el mock API usado por la app Flutter de prue
 
 [Ver video en YouTube](https://youtu.be/pVl4b69sT-Y)
 
+![Captura 7](imagenes/Captura%20de%20pantalla%202025-09-18%20201724.png)
+![Captura 8](imagenes/Captura%20de%20pantalla%202025-09-18%20201733.png)
+![Captura 9](imagenes/Captura%20de%20pantalla%202025-09-18%20201739.png)
+
+![Captura 1](imagenes/Captura%20de%20pantalla%202025-09-18%20201311.png)
+![Captura 2](imagenes/Captura%20de%20pantalla%202025-09-18%20201323.png)
+![Captura 3](imagenes/Captura%20de%20pantalla%202025-09-18%20201332.png)
+![Captura 4](imagenes/Captura%20de%20pantalla%202025-09-18%20201349.png)
+![Captura 5](imagenes/Captura%20de%20pantalla%202025-09-18%20201357.png)
+![Captura 6](imagenes/Captura%20de%20pantalla%202025-09-18%20201406.png)
+
+
 Referencia: Swagger UI
 - La API expuesta públicamente incluye Swagger en:
 
