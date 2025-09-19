@@ -2,6 +2,8 @@
 
 Este README describe cómo ejecutar el mock API usado por la app Flutter de prueba. El backend está implementado con NestJS + Mongoose y sirve como API de pruebas para autenticación y manejo de movimientos.
 
+[Ver video en YouTube](https://youtu.be/pVl4b69sT-Y)
+
 Referencia: Swagger UI
 - La API expuesta públicamente incluye Swagger en:
 
